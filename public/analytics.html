@@ -1,0 +1,167 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">    <title>Tax Aid Analytics</title>
+</head>
+<style>
+    .collapsible {
+        background-color: #777;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 15px;
+    }
+
+    .active, .collapsible:hover {
+        background-color: #555;
+    }
+
+    .content {
+        padding: 0;
+        display: none;
+        overflow: hidden;
+        background-color: grey lighten-3;
+    }
+
+</style>
+
+<body class ="grey lighten-3">
+    <!--Navbar-->
+    <nav class ="white">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo">
+                <img src="img/tax-aid-animation.gif" style="width: 64px; margin-top: auto;">
+            </a>
+            <ul id = "nav-mobile" class="right hide-on-med-and-down">
+                <li class="logged-in">
+                    <a href="/index.html" class="grey-text modal-trigger" data-target="modal-account">Home</a>
+                </li>
+
+                <li class="logged-in">
+                    <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--Sign Up Modal-->
+    <div id="modal-signup" class="modal">
+            <div class="modal-content">
+                <h4>Register</h4><br />
+                <form id="signup-form">
+                    <div class="input-field">
+                        <input type="email" id="signup-email" required/>
+                        <label for="signup-email">Email address</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="signup-password" required/>
+                        <label for="signup-password">Choose password</label>
+                    </div>
+                    <button class="btn yellow darken-2 z-depth-0">Sign Up</button>
+                </form>
+            </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <h4>Login</h4><br />
+            <form id="login-form">
+            <div class="input-field">
+                <input type="email" id="login-email" required />
+                <label for="login-email">Email address</label>
+            </div>
+            <div class="input-field">
+                <input type="password" id="login-password" required />
+                <label for="login-password">Your password</label>
+            </div>
+            <button class="btn yellow darken-2 z-depth-0">Login</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!--Age Group Chart-->
+    <button type="button" class="collapsible">Age Group</button>
+        <div class = "content" style="width:650px; margin: auto; margin-top: 2%; margin-bottom: 2%;" >
+            <iframe width="600" height="370" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRpR254GCIalZjFplORXKtpISu8IJK_z0ylNmlx8RKeEq1uSXVMlIez-JX9Z92-h5pmUfle57Obm22m/pubchart?oid=1081457474&amp;format=interactive"></iframe>
+        </div>
+
+    <!--Annual Household Income Chart-->
+    <button type="button" class="collapsible">Annual Household Income</button>
+    <div class="content" style="width:650px; margin: auto; margin-top: 2%; margin-bottom: 2%;">
+        <iframe width="600" height="370" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRpR254GCIalZjFplORXKtpISu8IJK_z0ylNmlx8RKeEq1uSXVMlIez-JX9Z92-h5pmUfle57Obm22m/pubchart?oid=591772109&amp;format=interactive"></iframe>
+    </div>
+
+    <!--Language Spoken Chart-->
+    <button type="button" class="collapsible">Language Spoken</button>
+    <div class="content" style="width:650px; margin: auto; margin-top: 2%; margin-bottom: 2%;">
+        <iframe width="600" height="370" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRpR254GCIalZjFplORXKtpISu8IJK_z0ylNmlx8RKeEq1uSXVMlIez-JX9Z92-h5pmUfle57Obm22m/pubchart?oid=847079765&amp;format=interactive"></iframe>
+    </div>
+
+    <!--How Did They Hear About Tax-Aid-->
+    <button type="button" class="collapsible">How Did They Hear About Tax-Aid</button>
+    <div class="content" style="width:650px; margin: auto; margin-top: 2%; margin-bottom: 2%;">
+        <iframe width="600" height="390" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRpR254GCIalZjFplORXKtpISu8IJK_z0ylNmlx8RKeEq1uSXVMlIez-JX9Z92-h5pmUfle57Obm22m/pubchart?oid=1435486673&amp;format=interactive"></iframe>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyCpQl9l8z0whi2CANWfMRn0rSSdHa8c9Cs",
+        authDomain: "fir-78905.firebaseapp.com",
+        databaseURL: "https://fir-78905.firebaseio.com",
+        projectId: "fir-78905",
+        storageBucket: "fir-78905.appspot.com",
+        messagingSenderId: "903287990749",
+        appId: "1:903287990749:web:d79b38a4cfddc645ef2e34",
+        measurementId: "G-ZS0VXFFMVM"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    //make auth and firestore references
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    </script>
+
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+        
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
+    </script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/scripts/auth.js"></script>
+    <script src="/scripts/index.js"></script>
+
+</body>
+</html>
